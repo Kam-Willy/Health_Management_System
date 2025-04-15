@@ -1,0 +1,28 @@
+.diagnosis-list {
+    margin: 3rem auto;
+    max-width: 1200px;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .diagnosis-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .diagnosis-list th,
+  .diagnosis-list td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .diagnosis-list th {
+    background-color: #f1f1f1;
+  }
+  
+  .diagnosis-list tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  

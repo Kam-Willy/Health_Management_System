@@ -1,0 +1,35 @@
+.App {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  background: #f0f0f0;
+}
+
+.form-container, .list-container {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input, textarea, button {
+  display: block;
+  width: 100%;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.diagnosis-card {
+  background: #fafafa;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}

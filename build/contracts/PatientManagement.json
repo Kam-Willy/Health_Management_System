@@ -1,0 +1,2966 @@
+{
+  "contractName": "PatientManagement",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "patientId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "diagnosis",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "confidence",
+          "type": "uint8"
+        }
+      ],
+      "name": "DiagnosisRecorded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "patientId",
+          "type": "uint256"
+        }
+      ],
+      "name": "PatientAdmitted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "patientId",
+          "type": "uint256"
+        }
+      ],
+      "name": "PatientDischarged",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "hospitalBeds",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "patientCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "patients",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "wallet",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint8",
+          "name": "age",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint16",
+          "name": "bedId",
+          "type": "uint16"
+        },
+        {
+          "internalType": "bool",
+          "name": "admitted",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bill",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "paid",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "diagnosis",
+          "type": "string"
+        },
+        {
+          "internalType": "uint8",
+          "name": "confidence",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"patientId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"diagnosis\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"confidence\",\"type\":\"uint8\"}],\"name\":\"DiagnosisRecorded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"patientId\",\"type\":\"uint256\"}],\"name\":\"PatientAdmitted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"patientId\",\"type\":\"uint256\"}],\"name\":\"PatientDischarged\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hospitalBeds\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"patientCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"patients\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"age\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"bedId\",\"type\":\"uint16\"},{\"internalType\":\"bool\",\"name\":\"admitted\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"bill\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"paid\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"diagnosis\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"confidence\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/PatientManagement.sol\":\"PatientManagement\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/PatientManagement.sol\":{\"keccak256\":\"0xf1a236eff21007223f11cf03c01f9cbc7f1cccffcd765dc4b8d51b5c812235ed\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8ec50e2d73145a99566792b170a089b186d29cbaebc0c7160d0918362bcfa798\",\"dweb:/ipfs/QmebT3CAV3RQP3ELBjP6xiEZCXpDaZY3eQ6pZRMKiTFZrm\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.18;\r\n\r\nabstract contract PatientManagement {\r\n    struct Patient {\r\n        address wallet;\r\n        string name;\r\n        uint8 age;\r\n        uint16 bedId;\r\n        bool admitted;\r\n        uint256 bill;\r\n        bool paid;\r\n        string diagnosis;\r\n        uint8 confidence;\r\n    }\r\n\r\n    mapping(uint256 => Patient) public patients;\r\n    mapping(uint256 => bool) public hospitalBeds;\r\n    uint256 public patientCounter;\r\n\r\n    event PatientAdmitted(uint256 indexed patientId);\r\n    event PatientDischarged(uint256 indexed patientId);\r\n    event DiagnosisRecorded(uint256 indexed patientId, string diagnosis, uint8 confidence);\r\n\r\n    modifier onlyStaff() virtual;\r\n\r\n    function _admitPatient(\r\n        address _wallet, string memory _name, uint8 _age, uint16 _bedId\r\n    ) internal {\r\n        require(_wallet != address(0), \"Invalid wallet address\");\r\n        require(!hospitalBeds[_bedId], \"Bed already occupied\");\r\n\r\n        patients[patientCounter] = Patient(_wallet, _name, _age, _bedId, true, 0, false, \"\", 0);\r\n        hospitalBeds[_bedId] = true;\r\n\r\n        emit PatientAdmitted(patientCounter);\r\n        patientCounter++;\r\n    }\r\n\r\n    function _dischargePatient(uint256 patientId) internal {\r\n        require(patients[patientId].admitted, \"Not admitted\");\r\n        require(patients[patientId].paid, \"Bill unpaid\");\r\n\r\n        hospitalBeds[patients[patientId].bedId] = false;\r\n        patients[patientId].admitted = false;\r\n\r\n        emit PatientDischarged(patientId);\r\n    }\r\n\r\n    function _recordDiagnosis(uint256 patientId, string memory _diagnosis, uint8 _confidence) internal {\r\n        require(patients[patientId].admitted, \"Not admitted\");\r\n        require(_confidence <= 100, \"Confidence must be 0-100\");\r\n        require(bytes(_diagnosis).length > 0, \"Diagnosis required\");\r\n\r\n        patients[patientId].diagnosis = _diagnosis;\r\n        patients[patientId].confidence = _confidence;\r\n\r\n        emit DiagnosisRecorded(patientId, _diagnosis, _confidence);\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\Administrator\\Will Projects\\python file\\Hospital_Management_System\\contracts\\PatientManagement.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/PatientManagement.sol",
+    "exportedSymbols": {
+      "PatientManagement": [
+        3938
+      ]
+    },
+    "id": 3939,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3732,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:20"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "PatientManagement",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 3938,
+        "linearizedBaseContracts": [
+          3938
+        ],
+        "name": "PatientManagement",
+        "nameLocation": "79:17:20",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "PatientManagement.Patient",
+            "id": 3751,
+            "members": [
+              {
+                "constant": false,
+                "id": 3734,
+                "mutability": "mutable",
+                "name": "wallet",
+                "nameLocation": "138:6:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "130:14:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 3733,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "130:7:20",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3736,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "162:4:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "155:11:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 3735,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "155:6:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3738,
+                "mutability": "mutable",
+                "name": "age",
+                "nameLocation": "183:3:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "177:9:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 3737,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "177:5:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3740,
+                "mutability": "mutable",
+                "name": "bedId",
+                "nameLocation": "204:5:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "197:12:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint16",
+                  "typeString": "uint16"
+                },
+                "typeName": {
+                  "id": 3739,
+                  "name": "uint16",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "197:6:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3742,
+                "mutability": "mutable",
+                "name": "admitted",
+                "nameLocation": "225:8:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "220:13:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3741,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "220:4:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3744,
+                "mutability": "mutable",
+                "name": "bill",
+                "nameLocation": "252:4:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "244:12:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3743,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "244:7:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3746,
+                "mutability": "mutable",
+                "name": "paid",
+                "nameLocation": "272:4:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "267:9:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3745,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "267:4:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3748,
+                "mutability": "mutable",
+                "name": "diagnosis",
+                "nameLocation": "294:9:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "287:16:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 3747,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "287:6:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3750,
+                "mutability": "mutable",
+                "name": "confidence",
+                "nameLocation": "320:10:20",
+                "nodeType": "VariableDeclaration",
+                "scope": 3751,
+                "src": "314:16:20",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 3749,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "314:5:20",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Patient",
+            "nameLocation": "111:7:20",
+            "nodeType": "StructDefinition",
+            "scope": 3938,
+            "src": "104:234:20",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "93119a83",
+            "id": 3756,
+            "mutability": "mutable",
+            "name": "patients",
+            "nameLocation": "381:8:20",
+            "nodeType": "VariableDeclaration",
+            "scope": 3938,
+            "src": "346:43:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+              "typeString": "mapping(uint256 => struct PatientManagement.Patient)"
+            },
+            "typeName": {
+              "id": 3755,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 3752,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "354:7:20",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "346:27:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                "typeString": "mapping(uint256 => struct PatientManagement.Patient)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 3754,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 3753,
+                  "name": "Patient",
+                  "nameLocations": [
+                    "365:7:20"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 3751,
+                  "src": "365:7:20"
+                },
+                "referencedDeclaration": 3751,
+                "src": "365:7:20",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Patient_$3751_storage_ptr",
+                  "typeString": "struct PatientManagement.Patient"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "565c90e6",
+            "id": 3760,
+            "mutability": "mutable",
+            "name": "hospitalBeds",
+            "nameLocation": "428:12:20",
+            "nodeType": "VariableDeclaration",
+            "scope": 3938,
+            "src": "396:44:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+              "typeString": "mapping(uint256 => bool)"
+            },
+            "typeName": {
+              "id": 3759,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 3757,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "404:7:20",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "396:24:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                "typeString": "mapping(uint256 => bool)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 3758,
+                "name": "bool",
+                "nodeType": "ElementaryTypeName",
+                "src": "415:4:20",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "e8e0b05c",
+            "id": 3762,
+            "mutability": "mutable",
+            "name": "patientCounter",
+            "nameLocation": "462:14:20",
+            "nodeType": "VariableDeclaration",
+            "scope": 3938,
+            "src": "447:29:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 3761,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "447:7:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "e07d481a79ebef1c024c1b9d207c8f58d0e60043d01cc40eb7206401b1a15d53",
+            "id": 3766,
+            "name": "PatientAdmitted",
+            "nameLocation": "491:15:20",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3765,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3764,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "523:9:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3766,
+                  "src": "507:25:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3763,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "507:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "506:27:20"
+            },
+            "src": "485:49:20"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "6294af96875788e102466087d7e81a784b9b8ab4a600af0619f4c27400f8c290",
+            "id": 3770,
+            "name": "PatientDischarged",
+            "nameLocation": "546:17:20",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3769,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3768,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "580:9:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3770,
+                  "src": "564:25:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3767,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "564:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "563:27:20"
+            },
+            "src": "540:51:20"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "88acd4a06135bfbaac3d3054efcc63f1e427b5c0585235e3fb94672462773b1f",
+            "id": 3778,
+            "name": "DiagnosisRecorded",
+            "nameLocation": "603:17:20",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3777,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3772,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "637:9:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3778,
+                  "src": "621:25:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3771,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "621:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3774,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "diagnosis",
+                  "nameLocation": "655:9:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3778,
+                  "src": "648:16:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3773,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "648:6:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3776,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "confidence",
+                  "nameLocation": "672:10:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3778,
+                  "src": "666:16:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 3775,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "666:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "620:63:20"
+            },
+            "src": "597:87:20"
+          },
+          {
+            "id": 3780,
+            "name": "onlyStaff",
+            "nameLocation": "701:9:20",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 3779,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "710:2:20"
+            },
+            "src": "692:29:20",
+            "virtual": true,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3838,
+              "nodeType": "Block",
+              "src": "842:354:20",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 3797,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 3792,
+                          "name": "_wallet",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3782,
+                          "src": "861:7:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 3795,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "880:1:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 3794,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "872:7:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 3793,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "872:7:20",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 3796,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "872:10:20",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "861:21:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "496e76616c69642077616c6c65742061646472657373",
+                        "id": 3798,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "884:24:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_dd128e933d077647bedee942f8fad0896dbcf403dd101362daa9f1ef97dd6adf",
+                          "typeString": "literal_string \"Invalid wallet address\""
+                        },
+                        "value": "Invalid wallet address"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_dd128e933d077647bedee942f8fad0896dbcf403dd101362daa9f1ef97dd6adf",
+                          "typeString": "literal_string \"Invalid wallet address\""
+                        }
+                      ],
+                      "id": 3791,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "853:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3799,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "853:56:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3800,
+                  "nodeType": "ExpressionStatement",
+                  "src": "853:56:20"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 3805,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "928:21:20",
+                        "subExpression": {
+                          "baseExpression": {
+                            "id": 3802,
+                            "name": "hospitalBeds",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3760,
+                            "src": "929:12:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                              "typeString": "mapping(uint256 => bool)"
+                            }
+                          },
+                          "id": 3804,
+                          "indexExpression": {
+                            "id": 3803,
+                            "name": "_bedId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3788,
+                            "src": "942:6:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint16",
+                              "typeString": "uint16"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "929:20:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "42656420616c7265616479206f63637570696564",
+                        "id": 3806,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "951:22:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_546d0638d6cc8c8e51f0d8a5d68237bbb3c2e93bf2eab58c9b52a9c4f4df73ff",
+                          "typeString": "literal_string \"Bed already occupied\""
+                        },
+                        "value": "Bed already occupied"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_546d0638d6cc8c8e51f0d8a5d68237bbb3c2e93bf2eab58c9b52a9c4f4df73ff",
+                          "typeString": "literal_string \"Bed already occupied\""
+                        }
+                      ],
+                      "id": 3801,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "920:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3807,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "920:54:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3808,
+                  "nodeType": "ExpressionStatement",
+                  "src": "920:54:20"
+                },
+                {
+                  "expression": {
+                    "id": 3823,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 3809,
+                        "name": "patients",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3756,
+                        "src": "987:8:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                          "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                        }
+                      },
+                      "id": 3811,
+                      "indexExpression": {
+                        "id": 3810,
+                        "name": "patientCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3762,
+                        "src": "996:14:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "987:24:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                        "typeString": "struct PatientManagement.Patient storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 3813,
+                          "name": "_wallet",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3782,
+                          "src": "1022:7:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "id": 3814,
+                          "name": "_name",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3784,
+                          "src": "1031:5:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "id": 3815,
+                          "name": "_age",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3786,
+                          "src": "1038:4:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        {
+                          "id": 3816,
+                          "name": "_bedId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3788,
+                          "src": "1044:6:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint16",
+                            "typeString": "uint16"
+                          }
+                        },
+                        {
+                          "hexValue": "74727565",
+                          "id": 3817,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "bool",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1052:4:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          "value": "true"
+                        },
+                        {
+                          "hexValue": "30",
+                          "id": 3818,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1058:1:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        {
+                          "hexValue": "66616c7365",
+                          "id": 3819,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "bool",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1061:5:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          "value": "false"
+                        },
+                        {
+                          "hexValue": "",
+                          "id": 3820,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1068:2:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                            "typeString": "literal_string \"\""
+                          },
+                          "value": ""
+                        },
+                        {
+                          "hexValue": "30",
+                          "id": 3821,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1072:1:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          },
+                          {
+                            "typeIdentifier": "t_uint16",
+                            "typeString": "uint16"
+                          },
+                          {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          {
+                            "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                            "typeString": "literal_string \"\""
+                          },
+                          {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          }
+                        ],
+                        "id": 3812,
+                        "name": "Patient",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3751,
+                        "src": "1014:7:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Patient_$3751_storage_ptr_$",
+                          "typeString": "type(struct PatientManagement.Patient storage pointer)"
+                        }
+                      },
+                      "id": 3822,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1014:60:20",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Patient_$3751_memory_ptr",
+                        "typeString": "struct PatientManagement.Patient memory"
+                      }
+                    },
+                    "src": "987:87:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                      "typeString": "struct PatientManagement.Patient storage ref"
+                    }
+                  },
+                  "id": 3824,
+                  "nodeType": "ExpressionStatement",
+                  "src": "987:87:20"
+                },
+                {
+                  "expression": {
+                    "id": 3829,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 3825,
+                        "name": "hospitalBeds",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3760,
+                        "src": "1085:12:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                          "typeString": "mapping(uint256 => bool)"
+                        }
+                      },
+                      "id": 3827,
+                      "indexExpression": {
+                        "id": 3826,
+                        "name": "_bedId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3788,
+                        "src": "1098:6:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint16",
+                          "typeString": "uint16"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1085:20:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "74727565",
+                      "id": 3828,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1108:4:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1085:27:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 3830,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1085:27:20"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 3832,
+                        "name": "patientCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3762,
+                        "src": "1146:14:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 3831,
+                      "name": "PatientAdmitted",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3766,
+                      "src": "1130:15:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 3833,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1130:31:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3834,
+                  "nodeType": "EmitStatement",
+                  "src": "1125:36:20"
+                },
+                {
+                  "expression": {
+                    "id": 3836,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "1172:16:20",
+                    "subExpression": {
+                      "id": 3835,
+                      "name": "patientCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3762,
+                      "src": "1172:14:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 3837,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1172:16:20"
+                }
+              ]
+            },
+            "id": 3839,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_admitPatient",
+            "nameLocation": "738:13:20",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3789,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3782,
+                  "mutability": "mutable",
+                  "name": "_wallet",
+                  "nameLocation": "770:7:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3839,
+                  "src": "762:15:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3781,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "762:7:20",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3784,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nameLocation": "793:5:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3839,
+                  "src": "779:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3783,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "779:6:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3786,
+                  "mutability": "mutable",
+                  "name": "_age",
+                  "nameLocation": "806:4:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3839,
+                  "src": "800:10:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 3785,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "800:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3788,
+                  "mutability": "mutable",
+                  "name": "_bedId",
+                  "nameLocation": "819:6:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3839,
+                  "src": "812:13:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 3787,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "812:6:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:81:20"
+            },
+            "returnParameters": {
+              "id": 3790,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "842:0:20"
+            },
+            "scope": 3938,
+            "src": "729:467:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3880,
+              "nodeType": "Block",
+              "src": "1259:284:20",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "baseExpression": {
+                            "id": 3845,
+                            "name": "patients",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3756,
+                            "src": "1278:8:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                              "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                            }
+                          },
+                          "id": 3847,
+                          "indexExpression": {
+                            "id": 3846,
+                            "name": "patientId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3841,
+                            "src": "1287:9:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1278:19:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                            "typeString": "struct PatientManagement.Patient storage ref"
+                          }
+                        },
+                        "id": 3848,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1298:8:20",
+                        "memberName": "admitted",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3742,
+                        "src": "1278:28:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4e6f742061646d6974746564",
+                        "id": 3849,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1308:14:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_39cc20d202bd63012cdc70ba808e33511a000383ba39207b7c8b6f67758c5ef2",
+                          "typeString": "literal_string \"Not admitted\""
+                        },
+                        "value": "Not admitted"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_39cc20d202bd63012cdc70ba808e33511a000383ba39207b7c8b6f67758c5ef2",
+                          "typeString": "literal_string \"Not admitted\""
+                        }
+                      ],
+                      "id": 3844,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1270:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3850,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1270:53:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3851,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1270:53:20"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "baseExpression": {
+                            "id": 3853,
+                            "name": "patients",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3756,
+                            "src": "1342:8:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                              "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                            }
+                          },
+                          "id": 3855,
+                          "indexExpression": {
+                            "id": 3854,
+                            "name": "patientId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3841,
+                            "src": "1351:9:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1342:19:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                            "typeString": "struct PatientManagement.Patient storage ref"
+                          }
+                        },
+                        "id": 3856,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1362:4:20",
+                        "memberName": "paid",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3746,
+                        "src": "1342:24:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "42696c6c20756e70616964",
+                        "id": 3857,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1368:13:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_e8f9b71f533d4cf533aa31d730bcf22ed4f704cbd665515e78eea1a9c5b1df5f",
+                          "typeString": "literal_string \"Bill unpaid\""
+                        },
+                        "value": "Bill unpaid"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_e8f9b71f533d4cf533aa31d730bcf22ed4f704cbd665515e78eea1a9c5b1df5f",
+                          "typeString": "literal_string \"Bill unpaid\""
+                        }
+                      ],
+                      "id": 3852,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1334:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3858,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1334:48:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3859,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1334:48:20"
+                },
+                {
+                  "expression": {
+                    "id": 3867,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 3860,
+                        "name": "hospitalBeds",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3760,
+                        "src": "1395:12:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                          "typeString": "mapping(uint256 => bool)"
+                        }
+                      },
+                      "id": 3865,
+                      "indexExpression": {
+                        "expression": {
+                          "baseExpression": {
+                            "id": 3861,
+                            "name": "patients",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3756,
+                            "src": "1408:8:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                              "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                            }
+                          },
+                          "id": 3863,
+                          "indexExpression": {
+                            "id": 3862,
+                            "name": "patientId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3841,
+                            "src": "1417:9:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1408:19:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                            "typeString": "struct PatientManagement.Patient storage ref"
+                          }
+                        },
+                        "id": 3864,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1428:5:20",
+                        "memberName": "bedId",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3740,
+                        "src": "1408:25:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint16",
+                          "typeString": "uint16"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1395:39:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "66616c7365",
+                      "id": 3866,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1437:5:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "src": "1395:47:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 3868,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1395:47:20"
+                },
+                {
+                  "expression": {
+                    "id": 3874,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 3869,
+                          "name": "patients",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3756,
+                          "src": "1453:8:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                            "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                          }
+                        },
+                        "id": 3871,
+                        "indexExpression": {
+                          "id": 3870,
+                          "name": "patientId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3841,
+                          "src": "1462:9:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1453:19:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                          "typeString": "struct PatientManagement.Patient storage ref"
+                        }
+                      },
+                      "id": 3872,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1473:8:20",
+                      "memberName": "admitted",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3742,
+                      "src": "1453:28:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "66616c7365",
+                      "id": 3873,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1484:5:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "src": "1453:36:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 3875,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1453:36:20"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 3877,
+                        "name": "patientId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3841,
+                        "src": "1525:9:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 3876,
+                      "name": "PatientDischarged",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3770,
+                      "src": "1507:17:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 3878,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1507:28:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3879,
+                  "nodeType": "EmitStatement",
+                  "src": "1502:33:20"
+                }
+              ]
+            },
+            "id": 3881,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_dischargePatient",
+            "nameLocation": "1213:17:20",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3842,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3841,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "1239:9:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3881,
+                  "src": "1231:17:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3840,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1231:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1230:19:20"
+            },
+            "returnParameters": {
+              "id": 3843,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1259:0:20"
+            },
+            "scope": 3938,
+            "src": "1204:339:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3936,
+              "nodeType": "Block",
+              "src": "1650:389:20",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "baseExpression": {
+                            "id": 3891,
+                            "name": "patients",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3756,
+                            "src": "1669:8:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                              "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                            }
+                          },
+                          "id": 3893,
+                          "indexExpression": {
+                            "id": 3892,
+                            "name": "patientId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3883,
+                            "src": "1678:9:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1669:19:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                            "typeString": "struct PatientManagement.Patient storage ref"
+                          }
+                        },
+                        "id": 3894,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1689:8:20",
+                        "memberName": "admitted",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3742,
+                        "src": "1669:28:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4e6f742061646d6974746564",
+                        "id": 3895,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1699:14:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_39cc20d202bd63012cdc70ba808e33511a000383ba39207b7c8b6f67758c5ef2",
+                          "typeString": "literal_string \"Not admitted\""
+                        },
+                        "value": "Not admitted"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_39cc20d202bd63012cdc70ba808e33511a000383ba39207b7c8b6f67758c5ef2",
+                          "typeString": "literal_string \"Not admitted\""
+                        }
+                      ],
+                      "id": 3890,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1661:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3896,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1661:53:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3897,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1661:53:20"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        "id": 3901,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 3899,
+                          "name": "_confidence",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3887,
+                          "src": "1733:11:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "<=",
+                        "rightExpression": {
+                          "hexValue": "313030",
+                          "id": 3900,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1748:3:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_100_by_1",
+                            "typeString": "int_const 100"
+                          },
+                          "value": "100"
+                        },
+                        "src": "1733:18:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "436f6e666964656e6365206d75737420626520302d313030",
+                        "id": 3902,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1753:26:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_184ba47c1ed4cc9c260dff586cb33b8c7f490720dfa2d7fc4ef75f881791baa7",
+                          "typeString": "literal_string \"Confidence must be 0-100\""
+                        },
+                        "value": "Confidence must be 0-100"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_184ba47c1ed4cc9c260dff586cb33b8c7f490720dfa2d7fc4ef75f881791baa7",
+                          "typeString": "literal_string \"Confidence must be 0-100\""
+                        }
+                      ],
+                      "id": 3898,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1725:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3903,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1725:55:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3904,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1725:55:20"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 3912,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "arguments": [
+                              {
+                                "id": 3908,
+                                "name": "_diagnosis",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 3885,
+                                "src": "1805:10:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                }
+                              ],
+                              "id": 3907,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "nodeType": "ElementaryTypeNameExpression",
+                              "src": "1799:5:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_bytes_storage_ptr_$",
+                                "typeString": "type(bytes storage pointer)"
+                              },
+                              "typeName": {
+                                "id": 3906,
+                                "name": "bytes",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "1799:5:20",
+                                "typeDescriptions": {}
+                              }
+                            },
+                            "id": 3909,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1799:17:20",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          },
+                          "id": 3910,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1817:6:20",
+                          "memberName": "length",
+                          "nodeType": "MemberAccess",
+                          "src": "1799:24:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 3911,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1826:1:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "1799:28:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "446961676e6f736973207265717569726564",
+                        "id": 3913,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1829:20:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_78c2e1a068ff08c0818b69f58f93a5294f58c4ef09e1130b1b7df56f6c95a6e9",
+                          "typeString": "literal_string \"Diagnosis required\""
+                        },
+                        "value": "Diagnosis required"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_78c2e1a068ff08c0818b69f58f93a5294f58c4ef09e1130b1b7df56f6c95a6e9",
+                          "typeString": "literal_string \"Diagnosis required\""
+                        }
+                      ],
+                      "id": 3905,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1791:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3914,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1791:59:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3915,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1791:59:20"
+                },
+                {
+                  "expression": {
+                    "id": 3921,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 3916,
+                          "name": "patients",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3756,
+                          "src": "1863:8:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                            "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                          }
+                        },
+                        "id": 3918,
+                        "indexExpression": {
+                          "id": 3917,
+                          "name": "patientId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3883,
+                          "src": "1872:9:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1863:19:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                          "typeString": "struct PatientManagement.Patient storage ref"
+                        }
+                      },
+                      "id": 3919,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1883:9:20",
+                      "memberName": "diagnosis",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3748,
+                      "src": "1863:29:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 3920,
+                      "name": "_diagnosis",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3885,
+                      "src": "1895:10:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1863:42:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 3922,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1863:42:20"
+                },
+                {
+                  "expression": {
+                    "id": 3928,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 3923,
+                          "name": "patients",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3756,
+                          "src": "1916:8:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Patient_$3751_storage_$",
+                            "typeString": "mapping(uint256 => struct PatientManagement.Patient storage ref)"
+                          }
+                        },
+                        "id": 3925,
+                        "indexExpression": {
+                          "id": 3924,
+                          "name": "patientId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3883,
+                          "src": "1925:9:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1916:19:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Patient_$3751_storage",
+                          "typeString": "struct PatientManagement.Patient storage ref"
+                        }
+                      },
+                      "id": 3926,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1936:10:20",
+                      "memberName": "confidence",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3750,
+                      "src": "1916:30:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 3927,
+                      "name": "_confidence",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3887,
+                      "src": "1949:11:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "1916:44:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "id": 3929,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1916:44:20"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 3931,
+                        "name": "patientId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3883,
+                        "src": "1996:9:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 3932,
+                        "name": "_diagnosis",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3885,
+                        "src": "2007:10:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 3933,
+                        "name": "_confidence",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3887,
+                        "src": "2019:11:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      ],
+                      "id": 3930,
+                      "name": "DiagnosisRecorded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3778,
+                      "src": "1978:17:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_string_memory_ptr_$_t_uint8_$returns$__$",
+                        "typeString": "function (uint256,string memory,uint8)"
+                      }
+                    },
+                    "id": 3934,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1978:53:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3935,
+                  "nodeType": "EmitStatement",
+                  "src": "1973:58:20"
+                }
+              ]
+            },
+            "id": 3937,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_recordDiagnosis",
+            "nameLocation": "1560:16:20",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3888,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3883,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "1585:9:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3937,
+                  "src": "1577:17:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3882,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1577:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3885,
+                  "mutability": "mutable",
+                  "name": "_diagnosis",
+                  "nameLocation": "1610:10:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3937,
+                  "src": "1596:24:20",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3884,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1596:6:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3887,
+                  "mutability": "mutable",
+                  "name": "_confidence",
+                  "nameLocation": "1628:11:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3937,
+                  "src": "1622:17:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 3886,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1622:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1576:64:20"
+            },
+            "returnParameters": {
+              "id": 3889,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1650:0:20"
+            },
+            "scope": 3938,
+            "src": "1551:488:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 3939,
+        "src": "61:1981:20",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:2011:20"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-04-15T01:56:56.264Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

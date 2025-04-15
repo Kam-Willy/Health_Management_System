@@ -1,0 +1,1694 @@
+{
+  "contractName": "Billing",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "patientId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "cost",
+          "type": "uint256"
+        }
+      ],
+      "name": "BillItemAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "patientId",
+          "type": "uint256"
+        }
+      ],
+      "name": "PaymentProcessed",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "patientBills",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "cost",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"patientId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"}],\"name\":\"BillItemAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"patientId\",\"type\":\"uint256\"}],\"name\":\"PaymentProcessed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"patientBills\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Billing.sol\":\"Billing\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Billing.sol\":{\"keccak256\":\"0xa551f1b570bec2b2917f49b739e53deed80766fa98485bc1267f860d2b12c696\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bc0d28412c2f665ccd2207d7178fdd58b29b29d908a9e115dd564e5d7cbfd292\",\"dweb:/ipfs/QmSg1v2qNsqrLBQxhrzp5XfW6cXLXqR7HQpU9ph3X17dNw\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.18;\r\n\r\nabstract contract Billing {\r\n    struct BillItem {\r\n        string description;\r\n        uint256 cost;\r\n    }\r\n\r\n    mapping(uint256 => BillItem[]) public patientBills;\r\n\r\n    event BillItemAdded(uint256 indexed patientId, string description, uint256 cost);\r\n    event PaymentProcessed(uint256 indexed patientId);\r\n\r\n    modifier onlyStaff() virtual;\r\n\r\n    function _addBillItem(uint256 patientId, string memory desc, uint256 cost) internal {\r\n        require(cost > 0, \"Cost must be positive\");\r\n        require(bytes(desc).length > 0, \"Description required\");\r\n\r\n        patientBills[patientId].push(BillItem(desc, cost));\r\n        _incrementBill(patientId, cost);\r\n\r\n        emit BillItemAdded(patientId, desc, cost);\r\n    }\r\n\r\n    function _getBillTotal(uint256 patientId) internal view returns (uint256 total) {\r\n        BillItem[] memory bills = patientBills[patientId];\r\n        for (uint i = 0; i < bills.length; i++) {\r\n            total += bills[i].cost;\r\n        }\r\n    }\r\n\r\n    function _incrementBill(uint256 patientId, uint256 amount) internal virtual;\r\n\r\n    function _markPaid(uint256 patientId) internal virtual;\r\n}\r\n",
+  "sourcePath": "C:\\Users\\Administrator\\Will Projects\\python file\\Hospital_Management_System\\contracts\\Billing.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Billing.sol",
+    "exportedSymbols": {
+      "Billing": [
+        3171
+      ]
+    },
+    "id": 3172,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3047,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:17"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "Billing",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 3171,
+        "linearizedBaseContracts": [
+          3171
+        ],
+        "name": "Billing",
+        "nameLocation": "79:7:17",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Billing.BillItem",
+            "id": 3052,
+            "members": [
+              {
+                "constant": false,
+                "id": 3049,
+                "mutability": "mutable",
+                "name": "description",
+                "nameLocation": "128:11:17",
+                "nodeType": "VariableDeclaration",
+                "scope": 3052,
+                "src": "121:18:17",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 3048,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "121:6:17",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3051,
+                "mutability": "mutable",
+                "name": "cost",
+                "nameLocation": "158:4:17",
+                "nodeType": "VariableDeclaration",
+                "scope": 3052,
+                "src": "150:12:17",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3050,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "150:7:17",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "BillItem",
+            "nameLocation": "101:8:17",
+            "nodeType": "StructDefinition",
+            "scope": 3171,
+            "src": "94:76:17",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "3c3ce90b",
+            "id": 3058,
+            "mutability": "mutable",
+            "name": "patientBills",
+            "nameLocation": "216:12:17",
+            "nodeType": "VariableDeclaration",
+            "scope": 3171,
+            "src": "178:50:17",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_$",
+              "typeString": "mapping(uint256 => struct Billing.BillItem[])"
+            },
+            "typeName": {
+              "id": 3057,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 3053,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "186:7:17",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "178:30:17",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_$",
+                "typeString": "mapping(uint256 => struct Billing.BillItem[])"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "baseType": {
+                  "id": 3055,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 3054,
+                    "name": "BillItem",
+                    "nameLocations": [
+                      "197:8:17"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 3052,
+                    "src": "197:8:17"
+                  },
+                  "referencedDeclaration": 3052,
+                  "src": "197:8:17",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BillItem_$3052_storage_ptr",
+                    "typeString": "struct Billing.BillItem"
+                  }
+                },
+                "id": 3056,
+                "nodeType": "ArrayTypeName",
+                "src": "197:10:17",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_ptr",
+                  "typeString": "struct Billing.BillItem[]"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "59a58c7311a2d03dd65504e4f5b1ddc6ee02ae971419cf6ab8e707edb077292d",
+            "id": 3066,
+            "name": "BillItemAdded",
+            "nameLocation": "243:13:17",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3065,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3060,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "273:9:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3066,
+                  "src": "257:25:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3059,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "257:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3062,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "nameLocation": "291:11:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3066,
+                  "src": "284:18:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3061,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "284:6:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3064,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "cost",
+                  "nameLocation": "312:4:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3066,
+                  "src": "304:12:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3063,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "304:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "256:61:17"
+            },
+            "src": "237:81:17"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "cff5d694e6a309557fa48081000c42ece1f65fba8fbfdefdefc4e6c7108d55b1",
+            "id": 3070,
+            "name": "PaymentProcessed",
+            "nameLocation": "330:16:17",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3068,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "363:9:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3070,
+                  "src": "347:25:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3067,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "347:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "346:27:17"
+            },
+            "src": "324:50:17"
+          },
+          {
+            "id": 3072,
+            "name": "onlyStaff",
+            "nameLocation": "391:9:17",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 3071,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "400:2:17"
+            },
+            "src": "382:29:17",
+            "virtual": true,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3120,
+              "nodeType": "Block",
+              "src": "503:286:17",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 3084,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 3082,
+                          "name": "cost",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3078,
+                          "src": "522:4:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 3083,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "529:1:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "522:8:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "436f7374206d75737420626520706f736974697665",
+                        "id": 3085,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "532:23:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_40a217d01b7a0c43a46a6fc1c03116d48348a11426a2dba97f30e25b8c795990",
+                          "typeString": "literal_string \"Cost must be positive\""
+                        },
+                        "value": "Cost must be positive"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_40a217d01b7a0c43a46a6fc1c03116d48348a11426a2dba97f30e25b8c795990",
+                          "typeString": "literal_string \"Cost must be positive\""
+                        }
+                      ],
+                      "id": 3081,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "514:7:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3086,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "514:42:17",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3087,
+                  "nodeType": "ExpressionStatement",
+                  "src": "514:42:17"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 3095,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "arguments": [
+                              {
+                                "id": 3091,
+                                "name": "desc",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 3076,
+                                "src": "581:4:17",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                }
+                              ],
+                              "id": 3090,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "nodeType": "ElementaryTypeNameExpression",
+                              "src": "575:5:17",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_bytes_storage_ptr_$",
+                                "typeString": "type(bytes storage pointer)"
+                              },
+                              "typeName": {
+                                "id": 3089,
+                                "name": "bytes",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "575:5:17",
+                                "typeDescriptions": {}
+                              }
+                            },
+                            "id": 3092,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "575:11:17",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          },
+                          "id": 3093,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "587:6:17",
+                          "memberName": "length",
+                          "nodeType": "MemberAccess",
+                          "src": "575:18:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 3094,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "596:1:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "575:22:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4465736372697074696f6e207265717569726564",
+                        "id": 3096,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "599:22:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_eb00cd189ec518a0d213fd40ccfdd1a6b7df3c9b1a45aaf85c089ce78e1ab12d",
+                          "typeString": "literal_string \"Description required\""
+                        },
+                        "value": "Description required"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_eb00cd189ec518a0d213fd40ccfdd1a6b7df3c9b1a45aaf85c089ce78e1ab12d",
+                          "typeString": "literal_string \"Description required\""
+                        }
+                      ],
+                      "id": 3088,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "567:7:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3097,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "567:55:17",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3098,
+                  "nodeType": "ExpressionStatement",
+                  "src": "567:55:17"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 3104,
+                            "name": "desc",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3076,
+                            "src": "673:4:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "id": 3105,
+                            "name": "cost",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3078,
+                            "src": "679:4:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          ],
+                          "id": 3103,
+                          "name": "BillItem",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3052,
+                          "src": "664:8:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_BillItem_$3052_storage_ptr_$",
+                            "typeString": "type(struct Billing.BillItem storage pointer)"
+                          }
+                        },
+                        "id": 3106,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "664:20:17",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_BillItem_$3052_memory_ptr",
+                          "typeString": "struct Billing.BillItem memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_BillItem_$3052_memory_ptr",
+                          "typeString": "struct Billing.BillItem memory"
+                        }
+                      ],
+                      "expression": {
+                        "baseExpression": {
+                          "id": 3099,
+                          "name": "patientBills",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3058,
+                          "src": "635:12:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_$",
+                            "typeString": "mapping(uint256 => struct Billing.BillItem storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 3101,
+                        "indexExpression": {
+                          "id": 3100,
+                          "name": "patientId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3074,
+                          "src": "648:9:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "635:23:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage",
+                          "typeString": "struct Billing.BillItem storage ref[] storage ref"
+                        }
+                      },
+                      "id": 3102,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "659:4:17",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "635:28:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_ptr_$_t_struct$_BillItem_$3052_storage_$returns$__$attached_to$_t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_ptr_$",
+                        "typeString": "function (struct Billing.BillItem storage ref[] storage pointer,struct Billing.BillItem storage ref)"
+                      }
+                    },
+                    "id": 3107,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "635:50:17",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3108,
+                  "nodeType": "ExpressionStatement",
+                  "src": "635:50:17"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 3110,
+                        "name": "patientId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3074,
+                        "src": "711:9:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 3111,
+                        "name": "cost",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3078,
+                        "src": "722:4:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 3109,
+                      "name": "_incrementBill",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3165,
+                      "src": "696:14:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,uint256)"
+                      }
+                    },
+                    "id": 3112,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "696:31:17",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3113,
+                  "nodeType": "ExpressionStatement",
+                  "src": "696:31:17"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 3115,
+                        "name": "patientId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3074,
+                        "src": "759:9:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 3116,
+                        "name": "desc",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3076,
+                        "src": "770:4:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 3117,
+                        "name": "cost",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3078,
+                        "src": "776:4:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 3114,
+                      "name": "BillItemAdded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3066,
+                      "src": "745:13:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_string_memory_ptr_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,string memory,uint256)"
+                      }
+                    },
+                    "id": 3118,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "745:36:17",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3119,
+                  "nodeType": "EmitStatement",
+                  "src": "740:41:17"
+                }
+              ]
+            },
+            "id": 3121,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_addBillItem",
+            "nameLocation": "428:12:17",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3079,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3074,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "449:9:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3121,
+                  "src": "441:17:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3073,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "441:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3076,
+                  "mutability": "mutable",
+                  "name": "desc",
+                  "nameLocation": "474:4:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3121,
+                  "src": "460:18:17",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3075,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "460:6:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3078,
+                  "mutability": "mutable",
+                  "name": "cost",
+                  "nameLocation": "488:4:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3121,
+                  "src": "480:12:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3077,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "480:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "440:53:17"
+            },
+            "returnParameters": {
+              "id": 3080,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "503:0:17"
+            },
+            "scope": 3171,
+            "src": "419:370:17",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3157,
+              "nodeType": "Block",
+              "src": "877:167:17",
+              "statements": [
+                {
+                  "assignments": [
+                    3132
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 3132,
+                      "mutability": "mutable",
+                      "name": "bills",
+                      "nameLocation": "906:5:17",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 3157,
+                      "src": "888:23:17",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_BillItem_$3052_memory_ptr_$dyn_memory_ptr",
+                        "typeString": "struct Billing.BillItem[]"
+                      },
+                      "typeName": {
+                        "baseType": {
+                          "id": 3130,
+                          "nodeType": "UserDefinedTypeName",
+                          "pathNode": {
+                            "id": 3129,
+                            "name": "BillItem",
+                            "nameLocations": [
+                              "888:8:17"
+                            ],
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 3052,
+                            "src": "888:8:17"
+                          },
+                          "referencedDeclaration": 3052,
+                          "src": "888:8:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BillItem_$3052_storage_ptr",
+                            "typeString": "struct Billing.BillItem"
+                          }
+                        },
+                        "id": 3131,
+                        "nodeType": "ArrayTypeName",
+                        "src": "888:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_ptr",
+                          "typeString": "struct Billing.BillItem[]"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 3136,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 3133,
+                      "name": "patientBills",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3058,
+                      "src": "914:12:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct Billing.BillItem storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 3135,
+                    "indexExpression": {
+                      "id": 3134,
+                      "name": "patientId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3123,
+                      "src": "927:9:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "914:23:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_BillItem_$3052_storage_$dyn_storage",
+                      "typeString": "struct Billing.BillItem storage ref[] storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "888:49:17"
+                },
+                {
+                  "body": {
+                    "id": 3155,
+                    "nodeType": "Block",
+                    "src": "988:49:17",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 3153,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "id": 3148,
+                            "name": "total",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3126,
+                            "src": "1003:5:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "+=",
+                          "rightHandSide": {
+                            "expression": {
+                              "baseExpression": {
+                                "id": 3149,
+                                "name": "bills",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 3132,
+                                "src": "1012:5:17",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_array$_t_struct$_BillItem_$3052_memory_ptr_$dyn_memory_ptr",
+                                  "typeString": "struct Billing.BillItem memory[] memory"
+                                }
+                              },
+                              "id": 3151,
+                              "indexExpression": {
+                                "id": 3150,
+                                "name": "i",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 3138,
+                                "src": "1018:1:17",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "1012:8:17",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_BillItem_$3052_memory_ptr",
+                                "typeString": "struct Billing.BillItem memory"
+                              }
+                            },
+                            "id": 3152,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1021:4:17",
+                            "memberName": "cost",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 3051,
+                            "src": "1012:13:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "1003:22:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 3154,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1003:22:17"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 3144,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 3141,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3138,
+                      "src": "965:1:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "id": 3142,
+                        "name": "bills",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3132,
+                        "src": "969:5:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_BillItem_$3052_memory_ptr_$dyn_memory_ptr",
+                          "typeString": "struct Billing.BillItem memory[] memory"
+                        }
+                      },
+                      "id": 3143,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "975:6:17",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "969:12:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "965:16:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 3156,
+                  "initializationExpression": {
+                    "assignments": [
+                      3138
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 3138,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "958:1:17",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 3156,
+                        "src": "953:6:17",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 3137,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "953:4:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 3140,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 3139,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "962:1:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "953:10:17"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 3146,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "983:3:17",
+                      "subExpression": {
+                        "id": 3145,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3138,
+                        "src": "983:1:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 3147,
+                    "nodeType": "ExpressionStatement",
+                    "src": "983:3:17"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "948:89:17"
+                }
+              ]
+            },
+            "id": 3158,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_getBillTotal",
+            "nameLocation": "806:13:17",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3124,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3123,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "828:9:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3158,
+                  "src": "820:17:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3122,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "820:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "819:19:17"
+            },
+            "returnParameters": {
+              "id": 3127,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3126,
+                  "mutability": "mutable",
+                  "name": "total",
+                  "nameLocation": "870:5:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3158,
+                  "src": "862:13:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3125,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "862:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "861:15:17"
+            },
+            "scope": 3171,
+            "src": "797:247:17",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 3165,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_incrementBill",
+            "nameLocation": "1061:14:17",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3163,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3160,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "1084:9:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3165,
+                  "src": "1076:17:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3159,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1076:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3162,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1103:6:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3165,
+                  "src": "1095:14:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3161,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1095:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1075:35:17"
+            },
+            "returnParameters": {
+              "id": 3164,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1127:0:17"
+            },
+            "scope": 3171,
+            "src": "1052:76:17",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "internal"
+          },
+          {
+            "id": 3170,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_markPaid",
+            "nameLocation": "1145:9:17",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3168,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3167,
+                  "mutability": "mutable",
+                  "name": "patientId",
+                  "nameLocation": "1163:9:17",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3170,
+                  "src": "1155:17:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3166,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1155:7:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1154:19:17"
+            },
+            "returnParameters": {
+              "id": 3169,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1190:0:17"
+            },
+            "scope": 3171,
+            "src": "1136:55:17",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 3172,
+        "src": "61:1133:17",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:1163:17"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-04-15T01:56:56.211Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
